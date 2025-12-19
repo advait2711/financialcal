@@ -1,0 +1,651 @@
+/* ==================== INVESTMENT CALCULATOR ==================== */
+.investment-calculator {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* ==================== HEADER ==================== */
+.ic-header {
+    text-align: center;
+    padding: 1rem 1rem 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: var(--radius);
+    color: var(--gray-700);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+}
+
+.back-btn:hover {
+    background: white;
+    transform: translateX(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.ic-header-content {
+    margin-top: 2rem;
+}
+
+.ic-header-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #14b8a6 0%, #6366f1 50%, #ec4899 100%);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(20, 184, 166, 0.3);
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+}
+
+.ic-header-icon::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(135deg, #14b8a6 0%, #6366f1 50%, #ec4899 100%);
+    border-radius: inherit;
+    filter: blur(16px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.ic-header-icon .icon {
+    width: 40px;
+    height: 40px;
+    color: white;
+    stroke-width: 2;
+}
+
+.ic-title {
+    font-size: 2.75rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--white) 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.03em;
+}
+
+.ic-subtitle {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 550px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* ==================== SECTIONS ==================== */
+.ic-sections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.ic-section {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.ic-section-full {
+    grid-column: 1 / -1;
+}
+
+.ic-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-secondary);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.ic-section:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.ic-section:hover::before {
+    opacity: 1;
+}
+
+.ic-section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+}
+
+.ic-section-icon {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.ic-section-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.25rem;
+}
+
+.ic-section-purpose {
+    font-size: 0.8125rem;
+    color: var(--gray-500);
+    font-weight: 400;
+}
+
+.input-lg {
+    padding: 1rem 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.allocation-preview {
+    margin-top: 0.75rem;
+}
+
+.allocation-preview span {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.portfolio-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    border-radius: var(--radius);
+    margin-top: 1rem;
+}
+
+.portfolio-label {
+    font-size: 1rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.portfolio-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==================== INVESTMENT SUMMARY ==================== */
+.investment-summary {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-md);
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--primary);
+    stroke-width: 1.5;
+}
+
+.summary-item>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.summary-label {
+    font-size: 0.9375rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==================== RESULTS ==================== */
+.ic-results {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.results-section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+/* ==================== RISK PROFILE ==================== */
+.risk-profile {
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+}
+
+.risk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-full);
+    color: white;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.risk-emoji {
+    font-size: 1.75rem;
+}
+
+.risk-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.risk-description {
+    font-size: 1rem;
+    color: var(--gray-600);
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, #14b8a6 0%, #6366f1 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(20, 184, 166, 0.3);
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(99, 102, 241, 0.4);
+}
+
+.btn-download:active {
+    transform: scale(0.98) translateY(0);
+}
+
+/* ==================== CHARTS ==================== */
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.chart-wrapper {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-200);
+}
+
+.chart-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.chart-box {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+}
+
+/* ==================== ANALYSIS ==================== */
+.analysis-section {
+    margin-bottom: 2rem;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.analysis-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    border: 2px solid var(--gray-200);
+    transition: var(--transition);
+}
+
+.analysis-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.analysis-card.surplus {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, var(--white) 100%);
+}
+
+.analysis-card.deficit {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, var(--white) 100%);
+}
+
+.analysis-card.balanced {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, var(--white) 100%);
+}
+
+.analysis-header {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.analysis-icon {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.5;
+}
+
+.analysis-asset {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-800);
+}
+
+.analysis-body {
+    margin-bottom: 1rem;
+}
+
+.analysis-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.analysis-row.diff {
+    border-top: 1px dashed var(--gray-200);
+    margin-top: 0.25rem;
+    padding-top: 0.75rem;
+}
+
+.analysis-row .value {
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.analysis-row .value.surplus {
+    color: var(--warning);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.analysis-row .value.deficit {
+    color: var(--error);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.analysis-row .value.balanced {
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.analysis-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.analysis-status.surplus {
+    background: rgba(245, 158, 11, 0.1);
+    color: #b45309;
+}
+
+.analysis-status.deficit {
+    background: rgba(239, 68, 68, 0.1);
+    color: #b91c1c;
+}
+
+.analysis-status.balanced {
+    background: rgba(16, 185, 129, 0.1);
+    color: #047857;
+}
+
+/* ==================== RECOMMENDATIONS ==================== */
+.recommendations {
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--gray-200);
+}
+
+.recommendations-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+}
+
+.recommendations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.recommendations-list li {
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.recommendations-list li::before {
+    content: '→';
+    font-weight: 700;
+}
+
+.recommendations-list li.surplus {
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid var(--warning);
+}
+
+.recommendations-list li.deficit {
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--error);
+}
+
+.recommendations-list li strong {
+    color: var(--gray-900);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 900px) {
+    .ic-sections {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+
+    .back-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ic-header {
+        padding: 1rem 0.5rem 2rem;
+    }
+
+    .ic-header-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .ic-title {
+        font-size: 2rem;
+    }
+
+    .ic-subtitle {
+        font-size: 1rem;
+    }
+
+    .ic-section {
+        padding: 1.5rem;
+    }
+
+    .ic-results {
+        padding: 1.75rem;
+        border-radius: var(--radius-lg);
+    }
+
+
+
+    .investment-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .ic-header {
+        padding: 0.75rem 0 1.5rem;
+    }
+
+    .ic-header-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: var(--radius);
+    }
+
+    .ic-header-icon .icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .ic-title {
+        font-size: 1.625rem;
+        line-height: 1.2;
+    }
+
+    .ic-subtitle {
+        font-size: 0.9375rem;
+    }
+
+    .ic-section {
+        padding: 1.25rem;
+        border-radius: var(--radius);
+    }
+
+    .ic-results {
+        padding: 1.25rem;
+    }
+
+    .risk-badge {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .risk-text {
+        font-size: 1rem;
+    }
+
+
+}
