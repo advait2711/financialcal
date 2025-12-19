@@ -606,9 +606,9 @@ function InvestmentCalculator({ onBack }) {
                                 return (
                                     <li key={key} className={data.status}>
                                         {data.status === 'surplus' ? (
-                                            <>Consider reducing <strong>{info.label.split('(')[0].trim()}</strong> by ₹{Math.abs(data.amount).toLocaleString()} ({Math.abs(data.difference).toFixed(1)}%)</>
+                                            <>Consider reducing <strong>{info.label.split('(')[0].trim()}</strong> by <span className="amount-value">₹{Math.abs(data.amount).toLocaleString()} ({Math.abs(data.difference).toFixed(1)}%)</span></>
                                         ) : (
-                                            <>Consider increasing <strong>{info.label.split('(')[0].trim()}</strong> by ₹{Math.abs(data.amount).toLocaleString()} ({Math.abs(data.difference).toFixed(1)}%)</>
+                                            <>Consider increasing <strong>{info.label.split('(')[0].trim()}</strong> by <span className="amount-value">₹{Math.abs(data.amount).toLocaleString()} ({Math.abs(data.difference).toFixed(1)}%)</span></>
                                         )}
                                     </li>
                                 );
