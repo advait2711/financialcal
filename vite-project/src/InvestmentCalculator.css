@@ -372,7 +372,7 @@
 
 .analysis-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
 }
 
@@ -382,6 +382,7 @@
     padding: 1.25rem;
     border: 2px solid var(--gray-200);
     transition: var(--transition);
+    overflow-wrap: break-word;
 }
 
 .analysis-card:hover {
@@ -432,9 +433,11 @@
 .analysis-row {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 0.5rem 0;
     font-size: 0.875rem;
     color: var(--gray-600);
+    gap: 0.5rem;
 }
 
 .analysis-row.diff {
@@ -446,6 +449,8 @@
 .analysis-row .value {
     font-weight: 700;
     color: var(--gray-900);
+    word-break: break-word;
+    text-align: right;
 }
 
 .analysis-row .value.surplus {
@@ -603,6 +608,10 @@
     .analysis-grid {
         grid-template-columns: 1fr;
     }
+
+    .chart-box {
+        min-height: 350px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -636,7 +645,24 @@
     }
 
     .ic-results {
-        padding: 1.25rem;
+        padding: 1rem;
+    }
+
+    .analysis-card {
+        padding: 1rem;
+    }
+
+    .analysis-row {
+        font-size: 0.8125rem;
+        gap: 0.5rem;
+    }
+
+    .analysis-asset {
+        font-size: 0.9375rem;
+    }
+
+    .chart-box {
+        min-height: 300px;
     }
 
     .risk-badge {
